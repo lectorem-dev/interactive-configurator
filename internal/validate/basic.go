@@ -9,7 +9,9 @@ import (
 	"strings"
 )
 
-func GetValidator(valueType string, enumValues []string) Validator {
+// GetValidator возвращает валидатор для указанного типа значения.
+// valueType — тип значения: int, bool, ip, port, path, string/any
+func GetValidator(valueType string) Validator {
 	switch strings.ToLower(valueType) {
 	case "int":
 		return IntValidator{}
@@ -21,23 +23,23 @@ func GetValidator(valueType string, enumValues []string) Validator {
 		return PortValidator{}
 	case "path":
 		return PathValidator{}
-	case "enum":
-		return EnumValidator{Values: enumValues}
 	case "string", "any":
 		return AnyValidator{}
 	default:
+		// По умолчанию не проверяем (любой ввод допустим)
 		return AnyValidator{}
 	}
 }
 
-// Валидаторы
-
+// AnyValidator — валидатор для типа string/any (все значения допустимы)
 type AnyValidator struct{}
 
+// Validate всегда возвращает nil — любой ввод допустим
 func (v AnyValidator) Validate(input string) error {
 	return nil
 }
 
+// IntValidator — проверка, что введено целое число
 type IntValidator struct{}
 
 func (v IntValidator) Validate(input string) error {
@@ -47,6 +49,7 @@ func (v IntValidator) Validate(input string) error {
 	return nil
 }
 
+// BoolValidator — проверка, что введено true или false
 type BoolValidator struct{}
 
 func (v BoolValidator) Validate(input string) error {
@@ -57,6 +60,7 @@ func (v BoolValidator) Validate(input string) error {
 	return nil
 }
 
+// IPValidator — проверка корректности IP адреса (IPv4 или IPv6)
 type IPValidator struct{}
 
 func (v IPValidator) Validate(input string) error {
@@ -66,6 +70,7 @@ func (v IPValidator) Validate(input string) error {
 	return nil
 }
 
+// PortValidator — проверка диапазона порта 1-65535
 type PortValidator struct{}
 
 func (v PortValidator) Validate(input string) error {
@@ -76,6 +81,7 @@ func (v PortValidator) Validate(input string) error {
 	return nil
 }
 
+// PathValidator — проверка корректности пути к файлу/директории
 type PathValidator struct{}
 
 func (v PathValidator) Validate(input string) error {
@@ -83,17 +89,4 @@ func (v PathValidator) Validate(input string) error {
 		return fmt.Errorf("невалидный путь: %s", input)
 	}
 	return nil
-}
-
-type EnumValidator struct {
-	Values []string
-}
-
-func (v EnumValidator) Validate(input string) error {
-	for _, val := range v.Values {
-		if input == val {
-			return nil
-		}
-	}
-	return fmt.Errorf("значение должно быть одним из: %v", v.Values)
 }

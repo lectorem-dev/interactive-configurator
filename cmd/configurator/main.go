@@ -9,7 +9,7 @@ import (
 
 func main() {
 	// Загружаем сценарий
-	sc, err := scenario.Load("examples/scenario.json")
+	sc, err := scenario.Load("test/scenario.json")
 	if err != nil {
 		fmt.Println("Ошибка загрузки сценария:", err)
 		return

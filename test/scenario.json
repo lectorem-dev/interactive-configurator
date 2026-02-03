@@ -1,0 +1,34 @@
+{
+  "steps": [
+    {
+      "file": "test/configs/app/app.ini",
+      "key": "server.host",
+      "type": "ip",
+      "comment": "IP адрес сервера приложения"
+    },
+    {
+      "file": "test/configs/app/app.ini",
+      "key": "debug",
+      "type": "bool",
+      "comment": "Включить режим отладки"
+    },
+    {
+      "file": "test/configs/db/db.json",
+      "key": "db.name",
+      "type": "any",
+      "comment": "Имя базы данных"
+    },
+    {
+      "file": "test/configs/db/db.json",
+      "key": "db.port",
+      "type": "int",
+      "comment": "Порт базы данных"
+    },
+    {
+      "file": "test/configs/network/network.cfg",
+      "key": "ip",
+      "type": "ip",
+      "comment": "IP для сетевого интерфейса"
+    }
+  ]
+}
