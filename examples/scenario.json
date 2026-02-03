@@ -1,0 +1,53 @@
+{
+  "steps": [
+    {
+      "file": "C:/platform/config/app.ini",
+      "key": "server.host",
+      "type": "ip",
+      "comment": "IP адрес сервера приложения"
+    },
+    {
+      "file": "C:/platform/config/app.ini",
+      "key": "server.port",
+      "type": "int",
+      "comment": "Порт, на котором будет запущен сервис"
+    },
+    {
+      "file": "C:/platform/db/config.json",
+      "key": "db.name",
+      "type": "any",
+      "comment": "Имя базы данных"
+    },
+    {
+      "file": "C:/platform/config/app.ini",
+      "key": "debug.mode",
+      "type": "bool",
+      "comment": "Включить режим отладки"
+    },
+    {
+      "file": "C:/platform/config/app.ini",
+      "key": "allowed.ports",
+      "type": "enum",
+      "enumValues": ["80", "443", "8080"],
+      "comment": "Допустимые порты для сервиса"
+    },
+    {
+      "file": "C:/platform/config/app.ini",
+      "key": "log.path",
+      "type": "path",
+      "comment": "Путь для логов"
+    },
+    {
+      "file": "C:/platform/config/app.ini",
+      "key": "invalid.int",
+      "type": "int",
+      "comment": "Попробуем ввести некорректное число для проверки обработки ошибок"
+    },
+    {
+      "file": "C:/platform/config/app.ini",
+      "key": "invalid.ip",
+      "type": "ip",
+      "comment": "Попробуем ввести некорректный IP для проверки обработки ошибок"
+    }
+  ]
+}
